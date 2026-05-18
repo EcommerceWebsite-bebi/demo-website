@@ -3,7 +3,6 @@ interface DailyHeroProps {
 	description: string;
 	metaItems: string[];
 	heroLabel: string;
-	kicker: string;
 }
 
 export default function DailyHero({
@@ -11,13 +10,9 @@ export default function DailyHero({
 	description,
 	metaItems,
 	heroLabel,
-	kicker,
 }: DailyHeroProps) {
 	return (
-		<section className="rounded-md border border-gray-200 bg-white p-8 md:p-10">
-			<div className="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-gray-50 px-3 py-1 text-xs font-semibold uppercase text-gray-600">
-				{kicker}
-			</div>
+		<section>
 			<h1 className="mt-4 text-3xl md:text-4xl font-bold text-gray-900">{title}</h1>
 			<p className="mt-4 max-w-2xl text-sm text-gray-600">{description}</p>
 			<div className="mt-6 flex flex-wrap gap-2">
