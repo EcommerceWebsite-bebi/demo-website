@@ -28,12 +28,10 @@ const products = [
 export default function ProductGrid() {
   return (
     <section className="py-stack-xl px-margin-x">
-      <div className="flex justify-between items-end mb-16">
-        <div>
-          <span className="text-xs text-gray-500 mb-4 block uppercase">NEW ARRIVALS</span>
-          <h2 className="text-3xl font-semibold">Tất cả sản phẩm</h2>
-        </div>
-        <a className="text-sm border-b border-black pb-1 hover:opacity-50" href="#">XEM TẤT CẢ</a>
+      <div className="flex flex-col items-center gap-4 mb-16 sm:relative sm:flex-row sm:items-end sm:justify-center">
+        <span className="text-xs text-gray-500 uppercase sm:absolute sm:left-0">NEW ARRIVALS</span>
+        <h2 className="text-3xl font-semibold text-center">Tất cả sản phẩm</h2>
+        <a className="text-sm border-b border-black pb-1 hover:opacity-50 sm:absolute sm:right-0" href="#">XEM TẤT CẢ</a>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-gray-200 border border-gray-200">
         {products.map((p) => (

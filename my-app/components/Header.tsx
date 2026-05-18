@@ -1,14 +1,36 @@
 "use client";
 
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+
 export default function Header() {
+  const pathname = usePathname();
+  const navItems = [
+    { href: "/shop", label: "SHOP" },
+    { href: "/custom", label: "CUSTOM" },
+    { href: "/daily", label: "DAILY" },
+    { href: "/contact", label: "CONTACT" },
+    { href: "/about", label: "ABOUT US" },
+  ];
+
   return (
     <header className="bg-white/80 backdrop-blur-xl sticky top-0 z-50 border-b border-gray-200 flex justify-between items-center w-full px-margin-x h-24">
-      <div className="text-2xl font-bold tracking-tight">Bí Be Bé Bi Hihi</div>
+      <Link href="/" aria-label="Home" className="text-2xl font-bold tracking-tight">MOUSEEE</Link>
       <nav className="hidden md:flex items-center space-x-8">
-        <a className="font-semibold text-sm border-b-2 border-black pb-1" href="#">Trang chủ</a>
-        <a className="text-sm text-gray-600 hover:text-black" href="#">Thử áo AI</a>
-        <a className="text-sm text-gray-600 hover:text-black" href="#">QR Cá nhân hóa</a>
-        <a className="text-sm text-gray-600 hover:text-black" href="#">Về chúng tôi</a>
+        {navItems.map((item) => {
+          const active = pathname?.startsWith(item.href);
+          return (
+            <Link
+              key={item.href}
+              href={item.href}
+              className={`text-sm ${
+                active ? "text-black border-b border-black pb-1" : "text-gray-600 hover:text-black"
+              } hover:border-b hover:border-black pb-0 hover:pb-1 transition-all duration-150`}
+            >
+              {item.label}
+            </Link>
+          );
+        })}
       </nav>
       <div className="flex items-center space-x-6">
         <div className="relative hidden sm:block">
