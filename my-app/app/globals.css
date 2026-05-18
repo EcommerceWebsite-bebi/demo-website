@@ -44,6 +44,26 @@ body {
   animation: marquee 20s linear infinite;
 }
 
+@keyframes fade-up {
+  0% {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fade-up {
+  animation: fade-up 0.7s ease-out both;
+}
+.animate-fade-up-delay-1 {
+  animation: fade-up 0.7s ease-out 0.12s both;
+}
+.animate-fade-up-delay-2 {
+  animation: fade-up 0.7s ease-out 0.24s both;
+}
+
 /* Small helpers to mimic stitch spacing tokens used in the source HTML */
 .px-margin-x { padding-left: 4rem; padding-right: 4rem; }
 .py-stack-xl { padding-top: 8rem; padding-bottom: 8rem; }
