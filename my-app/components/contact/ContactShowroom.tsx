@@ -2,11 +2,23 @@
 
 import { useState } from "react";
 
-const COUNTRIES = [{ value: "vietnam", label: "Vietnam" }];
+const COUNTRIES = [{ value: "vietnam", label: "Vietnam" }] as const;
 
-const CITIES = [{ value: "hcmc", label: "Thành Phố Hồ Chí Minh" }];
+type CountryKey = (typeof COUNTRIES)[number]["value"];
 
-const SHOPS = {
+const CITIES = [{ value: "hcmc", label: "Thành Phố Hồ Chí Minh" }] as const;
+
+type CityKey = (typeof CITIES)[number]["value"];
+
+type ShopInfo = {
+	id: string;
+	address: string;
+	hours: string;
+	phone: string;
+	mapsUrl: string;
+};
+
+const SHOPS: Record<CityKey, ShopInfo> = {
 	hcmc: {
 		id: "shop-01",
 		address:
@@ -19,8 +31,8 @@ const SHOPS = {
 };
 
 export default function ContactShowroom() {
-	const [country, setCountry] = useState("vietnam");
-	const [city, setCity] = useState("hcmc");
+	const [country, setCountry] = useState<CountryKey>("vietnam");
+	const [city, setCity] = useState<CityKey>("hcmc");
 
 	const shop = SHOPS[city];
 
@@ -36,7 +48,7 @@ export default function ContactShowroom() {
 					</label>
 					<select
 						value={country}
-						onChange={(e) => setCountry(e.target.value)}
+						onChange={(e) => setCountry(e.target.value as CountryKey)}
 						className="w-full rounded-md border border-gray-200 p-2 text-sm text-gray-700"
 					>
 						{COUNTRIES.map((c) => (
@@ -53,7 +65,7 @@ export default function ContactShowroom() {
 					</label>
 					<select
 						value={city}
-						onChange={(e) => setCity(e.target.value)}
+						onChange={(e) => setCity(e.target.value as CityKey)}
 						className="w-full rounded-md border border-gray-200 p-2 text-sm text-gray-700"
 					>
 						{CITIES.map((c) => (

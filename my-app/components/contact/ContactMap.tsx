@@ -7,7 +7,11 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 
 function fixLeafletIcons() {
-	delete L.Icon.Default.prototype._getIconUrl;
+	const iconProto = L.Icon.Default.prototype as L.Icon.Default & {
+		_getIconUrl?: () => string;
+	};
+
+	delete iconProto._getIconUrl;
 	L.Icon.Default.mergeOptions({
 		iconRetinaUrl:
 			"https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png",
@@ -23,7 +27,7 @@ export default function ContactMap() {
 		fixLeafletIcons();
 	}, []);
 
-	const position = [10.8511, 106.8014];
+	const position: L.LatLngExpression = [10.8511, 106.8014];
 
 	return (
 		<div className="h-full min-h-[400px] rounded-md overflow-hidden border border-gray-200">
